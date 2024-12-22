@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Format JSON</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <p>Enter the API URL and click the button below to fetch and visualize JSON data.</p>
+    <input type="text" id="apiUrl" placeholder="Enter API URL" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    <button id="fetchData" onclick="setJsonData()">Fetch Data</button>
+    <label>
+        <input type="radio" name="viewMode" value="text" onclick="format()" checked> Plain Text
+    </label>
+    <label>
+        <input type="radio" name="viewMode" onclick="format()" value="table"> Table
+    </label>
+
+    <div id="dataContainer"></div>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
