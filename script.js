@@ -5,12 +5,17 @@ const dataContainer = document.getElementById('dataContainer');
 
 async function setJsonData() {
     const apiUrl = document.getElementById('apiUrl').value;
+    const token = document.getElementById('tokenInput').value;
     if (!apiUrl) {
         dataContainer.innerHTML = '<p style="color: red;">Please enter a valid API URL.</p>';
         return;
     }
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         if (!response.ok) {
             throw new Error('Failed to fetch data');
         }

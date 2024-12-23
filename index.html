@@ -11,7 +11,8 @@
 <body>
 
     <p>Enter the API URL and click the button below to fetch and visualize JSON data.</p>
-    <input type="text" id="apiUrl" placeholder="Enter API URL" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    <input type="text" id="apiUrl" placeholder="Enter API URL">
+    <input class ="text-input" type="text" id="tokenInput" placeholder="Enter Bearer Token">
     <button id="fetchData" onclick="setJsonData()">Fetch Data</button>
     <label>
         <input type="radio" name="viewMode" value="text" onclick="format()" checked> Plain Text
