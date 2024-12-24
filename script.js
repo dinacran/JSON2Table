@@ -5,6 +5,7 @@ const dataContainer = document.getElementById('dataContainer');
 
 async function setJsonData() {
     const apiUrl = document.getElementById('apiUrl').value;
+    const authType = document.getElementById('auth').value
     const token = document.getElementById('tokenInput').value;
     if (!apiUrl) {
         dataContainer.innerHTML = '<p style="color: red;">Please enter a valid API URL.</p>';
@@ -13,7 +14,7 @@ async function setJsonData() {
     try {
         const response = await fetch(apiUrl, {
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `${authType ? `${authType} ${token}` : ''}`
             }
         });
         if (!response.ok) {

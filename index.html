@@ -12,6 +12,16 @@
 
     <p>Enter the API URL and click the button below to fetch and visualize JSON data.</p>
     <input type="text" id="apiUrl" placeholder="Enter API URL">
+    <label for="auth">  &nbsp; Select type of Authentication</label>
+    <select id="auth">
+        <option value="">none</option>
+        <option value="Bearer">Bearer</option>
+        <option value="Basic">Basic</option>
+        <option value="Digest">Digest</option>
+        <option value="SAML">SAML</option>
+        <option value="Hawk">Hawk</option>
+        <option value="CustomAuth">CustomAuth</option>
+    </select>
     <input class ="text-input" type="text" id="tokenInput" placeholder="Enter Bearer Token">
     <button id="fetchData" onclick="setJsonData()">Fetch Data</button>
     <label>
