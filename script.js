@@ -1,7 +1,6 @@
-
-
 var jsonData = null;
 const dataContainer = document.getElementById('dataContainer');
+const table = document.createElement('table');
 
 async function setJsonData() {
     const apiUrl = document.getElementById('apiUrl').value;
@@ -22,6 +21,7 @@ async function setJsonData() {
         }
         jsonData = await response.json();
         format();
+        generateTable();
     } catch (error) {
         dataContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
     }
@@ -29,21 +29,22 @@ async function setJsonData() {
 }
 function format() {
 
-    if (jsonData == null) setJsonData();
+    dataContainer.innerHTML = '';
 
     const viewMode = document.querySelector('input[name="viewMode"]:checked').value;
 
     if (viewMode === 'text') {
         dataContainer.innerHTML = `<pre>${JSON.stringify(jsonData, null, 2)}</pre>`;
     } else if (viewMode === 'table') {
-        const table = generateTable(jsonData);
+       dataContainer.appendChild(table)
     }
 
 }
 function generateTable() {
 
+    table.innerHTML = '';
+
     if (Array.isArray(jsonData)) {
-        const table = document.createElement('table');
         const thead = document.createElement('thead');
         const tbody = document.createElement('tbody');
 
@@ -68,11 +69,9 @@ function generateTable() {
 
         table.appendChild(thead);
         table.appendChild(tbody);
-        dataContainer.innerHTML = '';
-        dataContainer.appendChild(table);
+        
     }
     else {
-        const table = document.createElement('table');
         const thead = document.createElement('thead');
         const tbody = document.createElement('tbody');
 
@@ -93,7 +92,23 @@ function generateTable() {
         tbody.appendChild(tr);
         table.appendChild(thead);
         table.appendChild(tbody);
-        dataContainer.innerHTML = '';
-        dataContainer.appendChild(table);
+       
     }
+}
+
+function printExcel(){
+
+    if(jsonData == null){
+        dataContainer.innerHTML = '<p style="color: red;">Data container is empty</p>';
+        return;
+    }
+    
+    const workbook = XLSX.utils.book_new();
+
+    const worksheet = XLSX.utils.json_to_sheet(jsonData);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    XLSX.writeFile(workbook, "data.xlsx");
+   
 }
