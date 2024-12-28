@@ -1,12 +1,74 @@
-
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+input[type="text"], select, button {
+    font-size: 16px;
+    margin: 10px;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    outline: none;
+}
+
+input[type="text"]:focus, select:focus, button:focus {
+    border-color: #1e88e5;
+    box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+}
+
+button {
+    background-color: #1e88e5;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+label {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #e0e0e0;
+}
+
+input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 #dataContainer {
-    margin-top: 20px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    min-height: 200px;
+    overflow: auto;
 }
+
+@media (max-width: 600px) {
+    input[type="text"], select, button {
+        width: calc(100% - 40px);
+        margin: 10px 20px;
+    }
+
+    #dataContainer {
+        margin: 10px 20px;
+        padding: 10px;
+    }
+}
+
+
 
 table {
     width: 100%;
@@ -27,5 +89,5 @@ td {
 }
 
 th {
-    background-color: #f4f4f4;
+    background-color: #f4f4f431;
 }

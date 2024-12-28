@@ -4,7 +4,8 @@ const table = document.createElement('table');
 
 async function setJsonData() {
     const apiUrl = document.getElementById('apiUrl').value;
-    const authType = document.getElementById('auth').value
+    const authType = document.getElementById('auth').value;
+    const reqType = document.getElementById('request-type').value;
     const token = document.getElementById('tokenInput').value;
     if (!apiUrl) {
         dataContainer.innerHTML = '<p style="color: red;">Please enter a valid API URL.</p>';
@@ -12,6 +13,7 @@ async function setJsonData() {
     }
     try {
         const response = await fetch(apiUrl, {
+            method: `${reqType}`,
             headers: {
                 'Authorization': `${authType ? `${authType} ${token}` : ''}`
             }
@@ -36,7 +38,7 @@ function format() {
     if (viewMode === 'text') {
         dataContainer.innerHTML = `<pre>${JSON.stringify(jsonData, null, 2)}</pre>`;
     } else if (viewMode === 'table') {
-       dataContainer.appendChild(table)
+        dataContainer.appendChild(table)
     }
 
 }
@@ -69,7 +71,7 @@ function generateTable() {
 
         table.appendChild(thead);
         table.appendChild(tbody);
-        
+
     }
     else {
         const thead = document.createElement('thead');
@@ -92,17 +94,17 @@ function generateTable() {
         tbody.appendChild(tr);
         table.appendChild(thead);
         table.appendChild(tbody);
-       
+
     }
 }
 
-function printExcel(){
+function printExcel() {
 
-    if(jsonData == null){
+    if (jsonData == null) {
         dataContainer.innerHTML = '<p style="color: red;">Data container is empty</p>';
         return;
     }
-    
+
     const workbook = XLSX.utils.book_new();
 
     const worksheet = XLSX.utils.json_to_sheet(jsonData);
@@ -110,5 +112,5 @@ function printExcel(){
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
     XLSX.writeFile(workbook, "data.xlsx");
-   
+
 }
