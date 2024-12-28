@@ -36,7 +36,9 @@ function format() {
     const viewMode = document.querySelector('input[name="viewMode"]:checked').value;
 
     if (viewMode === 'text') {
-        dataContainer.innerHTML = `<pre>${JSON.stringify(jsonData, null, 2)}</pre>`;
+        dataContainer.textContent = JSON.stringify(jsonData, null, 2);
+        hljs.highlightElement(dataContainer);
+
     } else if (viewMode === 'table') {
         dataContainer.appendChild(table)
     }

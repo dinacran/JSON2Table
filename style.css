@@ -45,9 +45,9 @@ input[type="radio"] {
     margin-right: 5px;
 }
 
-#dataContainer {
-    margin: 20px;
-    padding: 20px;
+#dataContainer:not(:empty) {
+    margin: 10px 20px;
+    padding: 10px;
     border: 1px solid #333;
     border-radius: 4px;
     background-color: #1e1e1e;
@@ -67,8 +67,6 @@ input[type="radio"] {
         padding: 10px;
     }
 }
-
-
 
 table {
     width: 100%;
