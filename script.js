@@ -22,9 +22,10 @@ async function setJsonData() {
             throw new Error('Failed to fetch data');
         }
         jsonData = await response.json();
-        format();
         generateTable();
+        format();
     } catch (error) {
+        jsonData = null;
         dataContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
     }
 
