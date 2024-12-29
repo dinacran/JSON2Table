@@ -52,7 +52,7 @@ input[type="radio"] {
     border-radius: 4px;
     background-color: #1e1e1e;
     color: #e0e0e0;
-    min-height: 200px;
+    min-height: 0px;
     overflow: auto;
 }
 
